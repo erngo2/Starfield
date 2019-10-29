@@ -1,27 +1,38 @@
-Particle star;
+Particle[] star;
 void setup()
 {
+	noStroke();
 	size(500,500);
 	textAlign(CENTER,CENTER);
-	star = new Particle();
-
+	star = new Particle[2000];
+	for(int i = 0; i < star.length; i++)
+		star[i] = new Particle();
+	star[0] = new OddballParticle();
 }
 void draw()
 {
-	star.show();
-	star.move();
+	background(197);
+	for(int i = 0; i < star.length; i++){
+		star[i].show();
+		star[i].move();
+	}
 }
 class Particle
 {
 	double myX, myY, speed, angle;
-	int colour;
+	int sizzle;
+	int[] colour = new int[4];
 	Particle()
 	{
 		myX = width/2;
 		myY = height/2;
-		speed = (double)(Math.random() * 10);
+		speed = (double)(Math.random() * 10) + Math.random();
 		angle = Math.random() * 2 * Math.PI;
-		colour = (int)(Math.random() * 255);
+		colour[0] = (int)(Math.random() * 255);
+ 		colour[1] = (int)(Math.random() * 255);
+ 		colour[2] = (int)(Math.random() * 255);
+ 		colour[3] = (int)(Math.random() * 255);
+		sizzle = 10;
 	}
 
 	void move(){
@@ -30,18 +41,31 @@ class Particle
 	}
 
 	void show(){
-		fill(colour);
-		ellipse((float)myX, (float)myY, 10, 10);
+		fill(colour[0], colour[1], colour[2], colour[3]);
+		ellipse((float)myX, (float)myY, sizzle, sizzle);
 	}
 }
 
 void mousePressed(){
-	star.myX = 250;
-	star.myY = 250;
-	star.speed = (double)(Math.random() * 10);
-	star.angle = Math.random() * 2 * Math.PI;
+	for(int i = 0; i < star.length; i++){
+		for(int a =0; a < 4; a++)
+			star[i].colour[a] = (int)(Math.random() * 255);
+		star[i].myX = 250;
+		star[i].myY = 250;
+		star[i].speed = (double)(Math.random() * 10) + Math.random();
+		star[i].angle = Math.random() * 2 * Math.PI;
+	}
 }
-class OddballParticle //inherits from Particle
+class OddballParticle extends Particle
 {
-	//your code here
+	OddballParticle(){
+		myX = width/2;
+		myY = height/2;
+		speed = (double)(Math.random() * 10) + Math.random();
+		sizzle = 250;
+	}
+
+
 }
+
+
