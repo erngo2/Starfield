@@ -36,9 +36,9 @@ class Particle
 	}
 
 	void move(){
-		myX += Math.cos(angle) * speed;
-		myY += Math.sin(angle) * speed;
-		sizzle += 0.1;
+			myX += Math.cos(angle) * speed;
+			myY += Math.sin(angle) * speed;
+			sizzle += 0.1;
 	}
 
 	void show(){
@@ -57,26 +57,25 @@ void mousePressed(){
 		star[i].angle = Math.random() * 2 * Math.PI;
 		star[i].sizzle = 1;
 	}
-	star[0].sizzle = 250;
+	star[0].sizzle = 50;
 }
 class OddballParticle extends Particle
 {
 	OddballParticle(){
-		myX = width/2;
-		myY = height/2;
+		myX = width/2 + 25;
+		myY = height/2 + 25;
 		speed = Math.random() + Math.random();
-		sizzle = 250;
+		sizzle = 50;
 	}
 
-	//void move(){
-		//myX += Math.cos(angle) * speed;
-		//myY += Math.sin(angle) * speed;
-	//}
+	void show(){
+		ellipse((float)myX, (float)myY, sizzle, sizzle);
+	}
 
-	/*void show(){
-		fill(colour[0], colour[1], colour[2], colour[3]);
-	}*/
-
+	void move(){
+		myX = Math.random() * 500;
+		myY = Math.random() * 500;
+	}
 }
 
 
