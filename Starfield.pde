@@ -64,18 +64,21 @@ class OddballParticle extends Particle
 	OddballParticle(){
 		myX = width/2 + 25;
 		myY = height/2 + 25;
-		speed = Math.random() + Math.random();
 		sizzle = 50;
 	}
 
 	void show(){
+		fill(colour[0], colour[1], colour[2], colour[3]);
 		ellipse((float)myX, (float)myY, sizzle, sizzle);
 	}
 
 	void move(){
 		myX = Math.random() * 500;
 		myY = Math.random() * 500;
+		colour[0] = (int)(Math.random() * 255);
+ 		colour[1] = (int)(Math.random() * 255);
+ 		colour[2] = (int)(Math.random() * 255);
+ 		colour[3] = (int)(Math.random() * 255);
+ 		sizzle = (int)(Math.random() * 500);
 	}
 }
-
-
